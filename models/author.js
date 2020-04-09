@@ -12,7 +12,7 @@ const AuthorSchema = new Schema({
 
 // Virtual for author "full" name.
 AuthorSchema.virtual('name').get(function() {
-  const fullname = '';
+  let fullname = '';
 
   if (this.first_name && this.family_name) {
     fullname = this.family_name + ', ' + this.first_name;
@@ -30,7 +30,7 @@ AuthorSchema.virtual('url').get(function() {
 });
 
 AuthorSchema.virtual('lifespan').get(function() {
-  const lifetime_string = '';
+  let lifetime_string = '';
   if (this.date_of_birth) {
     lifetime_string = moment(this.date_of_birth).format('MMMM Do, YYYY');
   }
