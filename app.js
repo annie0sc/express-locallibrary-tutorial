@@ -9,6 +9,18 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+//mongodb+srv://dwstudent:<dw123>@cluster0-luj7k.azure.mongodb.net/local_library?retryWrites=true&w=majority;
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://dwstudent:<dw123>@cluster0-luj7k.azure.mongodb.net/local_library?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
