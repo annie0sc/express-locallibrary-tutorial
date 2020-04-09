@@ -9,17 +9,14 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
-//mongodb+srv://dwstudent:<dw123>@cluster0-luj7k.azure.mongodb.net/local_library?retryWrites=true&w=majority;
+//mongodb+srv://dwstudent:<dw123>@cluster0-luj7k.azure.mongodb.net/local_library?retryWrites=true&w=majority
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://dwstudent:<dw123>@cluster0-luj7k.azure.mongodb.net/local_library?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("local_library").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
-
+//Set up mongoose connection
+const mongoose = require('mongoose');
+const mongoDB = 'mongodb+srv://dwstudent:<dw123>@cluster0-luj7k.azure.mongodb.net/local_library?retryWrites=true&w=majority';
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
