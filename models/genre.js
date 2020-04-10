@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-const GenreSchema = new Schema({
+let GenreSchema = new Schema({
     name: {type: String, required: true, min: 3, max: 100}
 });
 

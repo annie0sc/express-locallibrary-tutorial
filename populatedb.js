@@ -3,31 +3,31 @@
 console.log('This script populates some test books, authors, genres and bookinstances to your database. Specified database as argument - e.g.: populatedb mongodb+srv://cooluser:coolpassword@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true');
 
 // Get arguments passed on command line
-const userArgs = process.argv.slice(2);
+let userArgs = process.argv.slice(2);
 /*
 if (!userArgs[0].startsWith('mongodb')) {
     console.log('ERROR: You need to specify a valid mongodb URL as the first argument');
     return
 }
 */
-const async = require('async')
-const Book = require('./models/book')
-const Author = require('./models/author')
-const Genre = require('./models/genre')
-const BookInstance = require('./models/bookinstance')
+let async = require('async')
+let Book = require('./models/book')
+let Author = require('./models/author')
+let Genre = require('./models/genre')
+let BookInstance = require('./models/bookinstance')
 
 
-const mongoose = require('mongoose');
-const mongoDB = userArgs[0];
+let mongoose = require('mongoose');
+let mongoDB = userArgs[0];
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
-const db = mongoose.connection;
+let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-const authors = []
-const genres = []
-const books = []
-const bookinstances = []
+let authors = []
+let genres = []
+let books = []
+let bookinstances = []
 
 function authorCreate(first_name, family_name, d_birth, d_death, cb) {
   authordetail = {first_name:first_name , family_name: family_name }
