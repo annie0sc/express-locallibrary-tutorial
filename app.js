@@ -14,7 +14,7 @@ let app = express();
 //Set up mongoose connection
 let mongoose = require('mongoose');
 let mongoDB = 'mongodb+srv://dwstudent:<dw123>@cluster0-luj7k.azure.mongodb.net/local_library?retryWrites=true&w=majority';
-mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
