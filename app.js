@@ -10,6 +10,7 @@ let usersRouter = require('./routes/users');
 let app = express();
 
 //mongodb+srv://dwstudent:<dw123>@cluster0-luj7k.azure.mongodb.net/local_library?retryWrites=true&w=majority
+//mongodb+srv://dwstudent:<password>@cluster0-luj7k.azure.mongodb.net/test?retryWrites=true&w=majority
 
 //Set up mongoose connection
 let mongoose = require('mongoose');
