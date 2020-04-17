@@ -1,11 +1,12 @@
-#Ignore API keys and secrets
-.env
 
 # Logs
 logs
 *.log
 npm-debug.log*
 *.bak
+
+#Ignore API keys and secrets
+.env
 
 
 # Runtime data

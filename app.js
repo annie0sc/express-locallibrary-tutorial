@@ -3,12 +3,13 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let dotenv = require('dotevn')
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 let catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
 let app = express();
-
+dotenv.config({ path: '.env' })
 //mongodb+srv://dwstudent:<dw123>@cluster0-luj7k.azure.mongodb.net/local_library?retryWrites=true&w=majority
 //mongodb+srv://dwstudent:<password>@cluster0-luj7k.azure.mongodb.net/test?retryWrites=true&w=majority
 
