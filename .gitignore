@@ -1,3 +1,6 @@
+#Ignore API keys and secrets
+.env
+
 # Logs
 logs
 *.log
