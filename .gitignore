@@ -6,7 +6,7 @@ npm-debug.log*
 *.bak
 
 #Ignore API keys and secrets
-.env
+*.env
 
 
 # Runtime data
