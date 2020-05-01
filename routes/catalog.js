@@ -1,12 +1,12 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
 
 // Require our controllers.
-var book_controller = require('../controllers/bookController'); 
-var author_controller = require('../controllers/authorController');
-var genre_controller = require('../controllers/genreController');
-var book_instance_controller = require('../controllers/bookinstanceController');
+let book_controller = require('../controllers/bookController'); 
+let author_controller = require('../controllers/authorController');
+let genre_controller = require('../controllers/genreController');
+let book_instance_controller = require('../controllers/bookinstanceController');
 
 
 /// BOOK ROUTES ///
