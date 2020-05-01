@@ -1,48 +1,29 @@
-var catalogRouter = require('./routes/catalog'); //Import routes for "catalog" area of site
-var compression = require('compression');
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var debug = require('debug')('author');
 
-// Create the Express application object
-var app = express();
-
-
-app.use(compression()); //Compress all routes
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/catalog', catalogRouter);  // Add catalog routes to middleware chain.
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
 
 var compression = require('compression');
 var helmet = require('helmet');
 
-// Create the Express application object
 var app = express();
 
-app.use(helmet());
 
-
-let createError = require('http-errors');
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
-let dotenv = require('dotenv')
-
-let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
-let catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
-let app = express();
-dotenv.config({ path: '.env' })
-//mongodb+srv://dwstudent:<dw123>@cluster0-luj7k.azure.mongodb.net/local_library?retryWrites=true&w=majority
-//mongodb+srv://dwstudent:<password>@cluster0-luj7k.azure.mongodb.net/test?retryWrites=true&w=majority
-
-//Set up mongoose connection
-let mongoose = require('mongoose');
-let mongoDB = 'mongodb+srv://dwstudent:<dw123>@cluster0-luj7k.azure.mongodb.net/local_library?retryWrites=true&w=majority';
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-let db = mongoose.connection;
+// Set up mongoose connection
+var mongoose = require('mongoose');
+var dev_db_url = 'mongodb+srv://cooluser:coolpassword@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true'
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -52,6 +33,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(helmet());
+app.use(compression()); // Compress all routes
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
